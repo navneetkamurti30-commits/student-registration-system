@@ -21,7 +21,7 @@ body {
 .header {
   text-align: center;
   color: white;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   margin-top: 20px;
 }
 
@@ -37,6 +37,79 @@ body {
   opacity: 0.9;
 }
 
+.header-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.header-btn {
+  padding: 12px 25px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header-btn:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+.header-btn.active {
+  background: white;
+  color: #667eea;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   NOTIFICATION LAYER SYSTEM (Positioned cleanly between Header and Forms)
+   ========================================================================== */
+.notification-zone {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Restricts notification element width to match the narrow registration form layout layout */
+.registration-form ~ .notification-zone,
+.main-content:has(.registration-form) linear-gradient, 
+.app-container:has(.registration-form) .notification-zone {
+  max-width: 600px;
+}
+
+.success-message {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  animation: slideIn 0.3s ease-out;
+  border-left: 4px solid #45a049;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.error-message {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  animation: slideIn 0.3s ease-out;
+  border-left: 4px solid #da190b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   MAIN VIEW LAYOUT CONTROLLERS
+   ========================================================================== */
 .main-content {
   display: flex;
   justify-content: center;
@@ -181,140 +254,353 @@ body {
   box-shadow: 0 6px 20px rgba(255, 152, 0, 0.45);
 }
 
-.success-message {
-  background-color: #4caf50;
+/* ==========================================================================
+   DATA TABLE CONTROLS & MANAGEMENT VIEW
+   ========================================================================== */
+.table-container {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.students-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 12px 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  animation: slideIn 0.3s ease-out;
-  border-left: 4px solid #45a049;
 }
 
-.error-message {
-  background-color: #f44336;
+.students-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.sortable-header:hover {
+  background: linear-gradient(135deg, #7b8eea 0%, #8b5bb2 100%);
+}
+
+.students-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.students-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.students-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #ffb74d 0%, #ff9800 100%);
   color: white;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.45);
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.45);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #f44336 0%, #e91e63 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.45);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.no-students {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: #999;
+}
+
+.search-section {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border: 2px solid #e0e0e0;
+}
+
+.search-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.search-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-group input {
+  flex: 1;
+  min-width: 180px;
   padding: 12px 15px;
+  border: 2px solid #e0e0e0;
   border-radius: 8px;
-  margin-bottom: 20px;
-  animation: slideIn 0.3s ease-out;
-  border-left: 4px solid #da190b;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 2rem;
-  }
-
-  .header p {
-    font-size: 1rem;
-  }
-
-  .registration-form {
-    padding: 30px 20px;
-  }
-
-  .form-group {
-    margin-bottom: 20px;
-  }
-
-  .form-group label {
-    font-size: 0.95rem;
-  }
-
-  .form-group input,
-  .form-group select {
-    padding: 10px 12px;
-    font-size: 0.95rem;
-  }
-
-  .submit-btn {
-    font-size: 1rem;
-    padding: 12px;
-  }
+.search-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
 }
 
-@media (max-width: 480px) {
-  .app-container {
-    padding: 10px;
-  }
-
-  .header {
-    margin-bottom: 30px;
-    margin-top: 10px;
-  }
-
-  .header h1 {
-    font-size: 1.6rem;
-    margin-bottom: 5px;
-  }
-
-  .header p {
-    font-size: 0.9rem;
-  }
-
-  .main-content {
-    padding-bottom: 20px;
-  }
-
-  .registration-form {
-    padding: 20px 15px;
-    border-radius: 10px;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-  }
-
-  .form-group label {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-  }
-
-  .form-group input,
-  .form-group select {
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  .submit-btn {
-    font-size: 0.95rem;
-    padding: 11px;
-  }
-
-  .success-message,
-  .error-message {
-    padding: 10px 12px;
-    font-size: 0.9rem;
-  }
+.search-btn {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-@media (max-width: 320px) {
-  .header h1 {
-    font-size: 1.3rem;
-  }
-
-  .registration-form {
-    padding: 15px 10px;
-  }
-
-  .form-group input,
-  .form-group select {
-    padding: 8px;
-  }
+.clear-search-btn {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%23667eea' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 20px;
-  padding-right: 40px !important;
+.found-student-section {
+  background: #f0f8ff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border-left: 5px solid #667eea;
 }
 
-* {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+.student-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.student-card p {
+  padding: 6px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.student-card p strong {
+  color: #667eea;
+}
+
+.found-student-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.students-count {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #81c784;
+  margin-top: 20px;
+}
+
+.students-count h3 {
+  color: #2e7d32;
+}
+
+.count-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.print-btn {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+}
+
+.print-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.5);
+}
+
+.print-btn:active {
+  transform: translateY(0);
+}
+
+.gray-scale-table thead {
+  background: linear-gradient(135deg, #7f8c8d 0%, #34495e 100%) !important;
+}
+
+/* ==========================================================================
+   FORMAL PRINT LAYOUTS - PRINT MEDIA EMULATION
+   ========================================================================== */
+@page {
+  size: landscape;
+  margin: 0; 
+}
+
+@media print {
+  html, body, #root, .app-container, .main-content {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 6mm 8mm !important; 
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body::before {
+    content: "OFFICIAL STUDENT REGISTRATION REGISTER";
+    display: block;
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 2mm; 
+    border-bottom: 1.5px solid #cccccc;
+    padding-bottom: 1mm;
+  }
+
+  .header, .header-buttons, .search-section, .found-student-section,
+  .students-count, .print-btn, .no-print-column, .notification-zone {
+    display: none !important;
+  }
+
+  .table-container {
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+  }
+
+  .students-table {
+    width: 100% !important;
+    border: 1px solid #cccccc !important;
+    margin: 0 !important; 
+    border-collapse: collapse !important;
+  }
+
+  .students-table thead {
+    background: #f1f5f9 !important;
+    color: #000000 !important;
+  }
+
+  .students-table th {
+    color: #000000 !important;
+    font-weight: bold !important;
+    padding: 6px 4px !important; 
+    border: 1px solid #cccccc !important;
+    text-transform: uppercase;
+    font-size: 8pt;
+  }
+
+  .students-table td {
+    border: 1px solid #e2e8f0 !important;
+    padding: 5px 4px !important; 
+    color: #000000 !important;
+    background: #ffffff !important;
+    font-size: 8pt;
+  }
+
+  .students-table tbody tr {
+    background-color: transparent !important;
+  }
+
+  .students-table td:nth-child(7), 
+  .students-table td:nth-child(8) {
+    white-space: nowrap !important;
+  }
+}

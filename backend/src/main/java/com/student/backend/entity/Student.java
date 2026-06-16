@@ -31,37 +31,38 @@ public class Student {
     @Column(name = "branch")
     private String branch;
 
-    @Column(name = "student_id")
+    @Column(name = "student_id", nullable = false, unique = true)
     private Integer studentId;
 
-    // Default Constructor
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false; 
+
+    @Column(name = "profile_image")
+    private String profileImage;
+
     public Student() {}
 
     // Getters and Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
-
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
-
     public String getGender() { return gender; }
     public void setGender(String gender) { this.gender = gender; }
-
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-
     public String getCollegeName() { return collegeName; }
     public void setCollegeName(String collegeName) { this.collegeName = collegeName; }
-
     public String getContactNumber() { return contactNumber; }
     public void setContactNumber(String contactNumber) { this.contactNumber = contactNumber; }
-
     public String getDegree() { return degree; }
     public void setDegree(String degree) { this.degree = degree; }
-
     public String getBranch() { return branch; }
     public void setBranch(String branch) { this.branch = branch; }
-
     public Integer getStudentId() { return studentId; }
     public void setStudentId(Integer studentId) { this.studentId = studentId; }
+    public Boolean getIsDeleted() { return isDeleted; }
+    public void setIsDeleted(Boolean isDeleted) { this.isDeleted = isDeleted; }
+    public String getProfileImage() { return profileImage; }
+    public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 }
